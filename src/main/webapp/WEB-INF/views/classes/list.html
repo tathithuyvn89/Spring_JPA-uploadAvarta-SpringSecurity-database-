@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Class</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //su kien nao thuc hien ajax
+            $('deleteClass').click(function (event) {
+                //lay du lieu
+                //lay the hien tai
+                let a = $(this);
+                let url=a.attr("href")
+                $.ajax({
+                    //phuong thuc
+                    type:"DELETE",
+                    //ten api
+                    url: url,
+                    success:function (classes) {
+                        //xoa the tr chua class muon xoa
+                        a.parent().parent().remove();
+
+                    }
+
+
+                })
+                event.preventDefault();
+
+            })
+
+        })
+    </script>
+</head>
+<body>
+<h1>Classes</h1>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="class: ${students}">
+        <td th:text="${class.getName()}"></td>
+        <td th:href="@{/classes/edit/__${class.getId()}__}"></td>
+        <td th:text="${class.}"></td>
+
+    </tr>
+</table>
+</body>
+</html>

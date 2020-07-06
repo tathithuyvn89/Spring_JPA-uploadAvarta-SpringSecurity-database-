@@ -23,6 +23,10 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import thuy.codegym.aspect.MyLogger;
+import thuy.codegym.service.classes.ClassService;
+import thuy.codegym.service.classes.ClassesServiceImpl;
+import thuy.codegym.service.student.StudentService;
+import thuy.codegym.service.student.StudentServiceImpl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -136,6 +140,14 @@ private ApplicationContext applicationContext;
         // Image resource.
         registry.addResourceHandler("/i/**") //
                 .addResourceLocations("file:" + fileUpload);
+    }
+    @Bean
+    public ClassService classesService(){
+        return new ClassesServiceImpl();
+    }
+    @Bean
+    public StudentService studentService(){
+        return new StudentServiceImpl();
     }
 
     @Bean
